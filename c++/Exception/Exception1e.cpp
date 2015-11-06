@@ -11,7 +11,7 @@ int main()
     ifstream file;
     int a;
 
-    file.open("./tmp/test.txt");
+    file.open("./tmp/testa.txt");
     if (!file.is_open()) {
       a = 1;
       // throw "ファイルを開けませんでした！";
