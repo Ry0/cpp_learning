@@ -26,8 +26,17 @@ int main( int argc, const char** argv )
     cv::Mat labelImage(src.size(), CV_32S);
 
     // ラベリング実行．戻り値がラベル数．また，このサンプルでは8近傍でラベリングする．
-    int nLabels = cv::connectedComponents(bin, labelImage, 8);
-    // int nLabels = connectedComponentsWithStats(bin, labelImage, 8);
+    // int nLabels = cv::connectedComponents(bin, labelImage, 8);
+    cv::Mat centroids;
+    cv::Mat statsv;
+    int nLabels = connectedComponentsWithStats(src, labelImage, statsv, centroids, 8);
+    double x,y;
+    for(int i=0;i<centroids.rows;i++){
+        x = centroids.at<float>(i,0);
+        y = centroids.at<float>(i,1);
+        std::cout << x << ", " << y << std::endl;
+    }
+
 
     // ラベリング結果の描画色を決定
     std::vector<cv::Vec3b> colors(nLabels);
